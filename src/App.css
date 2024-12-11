@@ -1,0 +1,139 @@
+body {
+  background-color: hsl(0,0%, 5%);
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 10px;
+  }
+}
+
+h1, h2, p , li , td , th{
+  font-family: 'Roboto', sans-serif;
+  color: hsl(0,0%, 100%);
+}
+
+.App, .home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.App-header {
+  background-color: hsl(0,0%, 5%);
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(0,0%, 10%);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 10px;
+  height: 100%;
+  background-color: hsl(0,0%, 5%);
+}
+
+nav button {
+  background-color: hsl(0,0%, 5%);
+  color: white;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 60px;
+  text-align: center;
+  margin: 10px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: auto;
+}
+
+.products-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 100px;
+}
+
+.search-container input {
+  margin-right: 5px;
+  width: 100px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-container button {
+  background-color: hsl(0,0%, 70%);
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+table {
+  width: 80%;
+  height: 100%;
+  background-color: hsl(0,0%, 70%);
+  border: 1px solid white;
+}
+
+tbody {
+  background-color: hsl(0,0%, 50%);
+  color: white;
+  text-align: start;
+}
+
+th {
+  background-color: hsl(0,0%, 40%);
+  color: white;
+}
+
+td {
+  padding-left: clamp(0px, 0.5vh, 10px);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: hsl(0,0%, 60%);
+}
+
+tbody tr:nth-child(even) {
+  background-color: hsl(0,0%, 45%);
+}
+
+
+
+
+
