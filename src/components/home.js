@@ -24,7 +24,7 @@ function Home() {
     };
 
     const handleHome = () => {
-        navigate('/home');
+        navigate('/');
     };
 
     useEffect(() => {
