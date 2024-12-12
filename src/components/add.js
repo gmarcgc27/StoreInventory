@@ -18,7 +18,7 @@ const Add = () => {
     };
 
     const handleHome = () => {
-        navigate('/');
+        navigate('/home');
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
