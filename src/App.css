@@ -46,8 +46,9 @@ nav {
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 10px;
+  gap: 30px;
   height: 100%;
+  width: 60px;
   background-color: hsl(0,0%, 5%);
 }
 
@@ -57,9 +58,9 @@ nav button {
   padding: 10px;
   border: 1px solid white;
   border-radius: 5px;
-  width: 60px;
+  width: 90%;
   text-align: center;
-  margin: 10px;
+  margin: 10px 2px 2px 2px;
 }
 
 main {
@@ -68,6 +69,8 @@ main {
   align-items: center;
   justify-content: start;
   width: 100%;
+  overflow-y: auto;
+  height: auto;
 }
 
 .products {
@@ -91,13 +94,6 @@ main {
 .search-container input {
   margin-right: 5px;
   width: 100px;
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.search-container button {
-  background-color: hsl(0,0%, 70%);
   border: 1px solid white;
   border-radius: 5px;
   padding: 5px;
@@ -133,7 +129,146 @@ tbody tr:nth-child(even) {
   background-color: hsl(0,0%, 45%);
 }
 
+.add-form input {
+  background-color: hsl(0,0%, 20%);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  width: 200px;
+}
+
+.add-form select {
+  background-color: hsl(0,0%, 10%);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  width: 200px;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.add-form button {  
+  background-color: hsl(0,0%, 70%);
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  width: 200px;
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+
+.modal-buttons .delete-btn{
+  background-color: #ff4444;
+  color: white;
+  width: 100px;
+}
+
+.modal button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal button:first-child {
+  background-color: #ccc;
+}
+
+.modal button.delete-btn {
+  background-color: #ff4444;
+  color: white;
+}
+
+.edit-btn {
+  background-color: hsl(0,0%, 0%);
+  color: white;
+  width: 50px;
+  margin: 5px;
+}
+
+.delete-btn {
+  background-color: #ff4444;
+  color: white;
+  width: 50px;
+}
+
+td .delete-btn{
+  margin: 5px;
+}
 
 
+.modal h2, p{
+  color: hsl(0,0%, 0%);
+}
 
+.modal input {
+  background-color: hsl(0,0%, 20%);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  width: 200px;
+  text-align: start;
+}
 
+.edit-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancel-btn {
+  background-color: hsl(0,0%, 10%);
+  color: white;
+  margin: 5px;
+}
+
+.save-btn {
+  background-color: hsl(0,0%, 0%);
+  color: white;
+  margin: 5px;
+}
