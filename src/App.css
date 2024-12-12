@@ -116,6 +116,10 @@ th {
   color: white;
 }
 
+th[style*="cursor: pointer"]:hover {
+  background-color: #f0f0f0;
+}
+
 td {
   padding-left: clamp(0px, 0.5vh, 10px);
 }
@@ -270,4 +274,12 @@ td .delete-btn{
   background-color: hsl(0,0%, 0%);
   color: white;
   margin: 5px;
+}
+
+.small-column {
+    width: clamp(0px, 1vh, 10px);
+}
+
+.text-center {
+    text-align: center;
 }

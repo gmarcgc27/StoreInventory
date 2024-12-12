@@ -18,6 +18,11 @@ function Home() {
         product_type: '',
         quantity: ''
     });
+    const [sortField, setSortField] = useState(null);
+    const [sortDirection, setSortDirection] = useState('asc');
+    const productTypes = ['Drinks', 'Food', 'Things', 'Spices', 'Detergents', 'Other'];
+    const [currentTypeIndex, setCurrentTypeIndex] = useState(-1);
+    const [originalProducts, setOriginalProducts] = useState([]);
 
     const handleAdd = () => {
         navigate('/add');
@@ -38,8 +43,11 @@ function Home() {
                         ...product,
                         price: Number(product.price),
                         selling_price: Number(product.selling_price)
-                    }));
+                    }))
+                    .sort((a, b) => a.id - b.id);
+                    
                     setProducts(formattedData);
+                    setOriginalProducts(formattedData);
                 }
             } catch (err) {
                 setError(err.message);
@@ -50,12 +58,14 @@ function Home() {
         fetchProducts();
     }, []);
 
-    const filteredProducts = products.filter(product =>
-        product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.price.toString().includes(searchTerm) ||
-        product.selling_price.toString().includes(searchTerm) ||
-        product.product_type.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredProducts = searchTerm
+        ? products.filter(product =>
+            product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.price.toString().includes(searchTerm) ||
+            product.selling_price.toString().includes(searchTerm) ||
+            product.product_type.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : products;
 
     const handleEdit = (id) => {
         const product = products.find(p => p.id === id);
@@ -118,6 +128,41 @@ function Home() {
         }
     };
 
+    const handleSort = (field) => {
+        if (field === 'product_type') {
+            // Cycle through product types
+            const nextIndex = (currentTypeIndex + 1) % (productTypes.length + 1);
+            setCurrentTypeIndex(nextIndex);
+            
+            if (nextIndex === productTypes.length || nextIndex === -1) {
+                // Show all products when we complete the cycle
+                setProducts([...originalProducts]);
+                setCurrentTypeIndex(-1);
+            } else {
+                // Filter for current product type
+                const filteredProducts = originalProducts.filter(
+                    product => product.product_type === productTypes[nextIndex]
+                );
+                setProducts(filteredProducts);
+            }
+        } else {
+            // Original sorting logic for other fields
+            const newDirection = field === sortField && sortDirection === 'asc' ? 'desc' : 'asc';
+            setSortField(field);
+            setSortDirection(newDirection);
+            
+            const sortedProducts = [...products].sort((a, b) => {
+                if (newDirection === 'asc') {
+                    return a[field] > b[field] ? 1 : -1;
+                } else {
+                    return a[field] < b[field] ? 1 : -1;
+                }
+            });
+            
+            setProducts(sortedProducts);
+        }
+    };
+
     return (
         <div className="home">
             <header className="App-header">
@@ -148,24 +193,29 @@ function Home() {
                     <table>
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th className="small-column">id</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Selling Price</th>
-                                <th>Type</th>
-                                <th>Quantity</th>
+                                <th 
+                                    onClick={() => handleSort('product_type')} 
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    Type {sortField === 'product_type' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th className="small-column">Quantity</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredProducts.map(product => (
                                 <tr key={product.id}>
-                                    <td>{product.id}</td>
+                                    <td className="small-column text-center">{product.id}</td>
                                     <td>{product.product_name}</td>
                                     <td>₱{product.price.toFixed(2)}</td>
                                     <td>₱{product.selling_price.toFixed(2)}</td>
                                     <td>{product.product_type}</td>
-                                    <td>{product.quantity}</td>
+                                    <td className="small-column text-center">{product.quantity}</td>
                                     <td>
                                         <button 
                                             className="edit-btn"
