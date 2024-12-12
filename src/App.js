@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/StoreInventory">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<Add />} />
