@@ -30,12 +30,16 @@ function Home() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                // eslint-disable-next-line no-unused-vars
                 const { data, error } = await supabase.from('Products').select('*');
                 if (error) {
                     setError(error.message);
                 } else {
-                    setProducts(data);
+                    const formattedData = data.map(product => ({
+                        ...product,
+                        price: Number(product.price),
+                        selling_price: Number(product.selling_price)
+                    }));
+                    setProducts(formattedData);
                 }
             } catch (err) {
                 setError(err.message);
